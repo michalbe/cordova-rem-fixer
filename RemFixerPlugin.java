@@ -1,4 +1,4 @@
-package org.michalbe.cordova.plugin;
+package org.michalbe.cordova.plugins;
 
 import org.apache.cordova.DroidGap;
 import org.apache.cordova.api.CallbackContext;
