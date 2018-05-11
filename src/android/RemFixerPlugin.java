@@ -1,52 +1,30 @@
 package org.apache.cordova.plugin;
 
-import org.apache.cordova.DroidGap;
-import org.apache.cordova.api.CallbackContext;
-import org.apache.cordova.api.CordovaPlugin;
-import org.json.JSONArray;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaInterface;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import android.app.Activity;
-import android.util.SparseArray;
-import android.webkit.WebSettings;
-import android.webkit.WebSettings.TextSize;
 import android.webkit.WebView;
 
-
-/**
- * Cordova Plugin for adjusting the font size, between 50% and 200%.
- * 
- * Shows up in the JavaScript as window.plugins.fontSizeAdjust
- * 
- * @author nolan
- *
- */
 @SuppressWarnings("deprecation")
 public class RemFixerPlugin extends CordovaPlugin {
-    
-    @Override
-    public boolean execute() {
-        
-        DroidGap droidGap = (DroidGap)super.cordova.getActivity();
-        
-        WebView webView = (WebView) droidGap.findViewById(100);
+    public static WebView webView;  
 
-        
-        adjustOnUIThread(droidGap, webView);
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView cordovaWebView) {
+        super.initialize(cordova, cordovaWebView);
+
+        RemFixerPlugin.webView = (WebView) cordovaWebView;
+    }
+
+    @Override
+    public boolean execute(String action, String rawArgs, CallbackContext callbackContext) throws JSONException {
+
+        RemFixerPlugin.webView.getSettings().setMinimumFontSize(100);
+        RemFixerPlugin.webView.getSettings().setMinimumLogicalFontSize(100);
         
         return true;
-    }
-    
-    private void adjustOnUIThread(final Activity activity, final WebView webView) {
-        
-        activity.runOnUiThread(new Runnable() {
-            
-            @Override
-            public void run() {
-                webView.getSettings().setMinimumFontSize(1);
-                webView.getSettings().setMinimumLogicalFontSize(1);
-            }
-        });
     }
 }
