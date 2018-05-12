@@ -22,8 +22,8 @@ public class RemFixerPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, String rawArgs, CallbackContext callbackContext) throws JSONException {
 
-        RemFixerPlugin.webView.getSettings().setMinimumFontSize(100);
-        RemFixerPlugin.webView.getSettings().setMinimumLogicalFontSize(100);
+        RemFixerPlugin.webView.getSettings().setMinimumFontSize(1);
+        RemFixerPlugin.webView.getSettings().setMinimumLogicalFontSize(1);
         
         return true;
     }
