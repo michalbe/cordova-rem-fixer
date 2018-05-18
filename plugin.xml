@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-remfixer" version="0.0.1">
+    <name>RemFixer</name>
+    <description>RemFixer</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,remfixer,michalbe</keywords>
+    <js-module src="www/remFixer.js" name="remfixer">
+        <clobbers target="device" />
+    </js-module>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="RemFixerPlugin">
+                <param name="android-package" value="org.apache.cordova.plugin.RemFixerPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/RemFixerPlugin.java" target-dir="src/org/apache/cordova/plugin" />
+    </platform>
+</plugin>
